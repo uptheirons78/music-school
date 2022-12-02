@@ -17,7 +17,10 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
+get_header();
+
 ?>
+
 <div class="container">
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : ?>
@@ -30,3 +33,5 @@ if ( ! defined( 'ABSPATH' ) ) {
       <h2><?php echo __('There is no content to display here.', 'music-school'); ?></h2>
   <?php endif; ?>
 </div>
+
+<?php get_footer(); ?>

@@ -31,7 +31,9 @@
   block-size: 100%;
   block-size: 100dvb;
   line-height: 1.5;
-  font-family: system-ui, sans-serif;
+  font-family: var(--main-font);
+  font-size: 1rem;
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -96,8 +98,8 @@
 }
 
 :where(:focus-visible) {
-  outline: 2px solid var(--focus-color, Highlight);
-  outline-offset: 2px;
+  outline: 4px solid var(--color-shades-dark);
+  outline-offset: 4px;
 }
 
 :where(.visually-hidden:not(:focus, :active, :focus-within, .not-visually-hidden)) {

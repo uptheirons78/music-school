@@ -32,12 +32,34 @@ if (!defined('ABSPATH')) {
   <div id="page" class="site">
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'music-school'); ?></a>
 
-    <header id="masthead" class="site-header">
-      <div class="site-branding container">
+    <header id="primary-header" class="primary-header">
+
+      <div class="container">
+
         <h1 class="site-title">
           <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
             <?php bloginfo('name'); ?>
           </a>
         </h1>
-      </div><!-- .site-branding -->
-    </header><!-- #masthead -->
+
+        <button class="hamburger" type="button" aria-expanded="false" aria-label="Menu" aria-controls="main-navigation">
+          <svg fill="var(--color-hamburger)" class="hamburger" viewBox="0 0 100 100" width="30">
+            <rect class="line top" width="80" height="8" x="10" y="30" rx="5"></rect>
+            <rect class="line middle" width="80" height="8" x="10" y="50" rx="5"></rect>
+            <rect class="line bottom" width="80" height="8" x="10" y="70" rx="5"></rect>
+          </svg>
+        </button>
+
+        <nav id="main-navigation" class="main-navigation" data-visible="false">
+        <?php
+        wp_nav_menu(
+          array(
+            'theme_location' => 'menu-1',
+            'menu_id'        => 'primary-menu',
+            'container'      => '',
+          )
+        );
+        ?>
+        </nav>
+      </div>
+    </header>

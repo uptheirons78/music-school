@@ -1,0 +1,120 @@
+.primary-header {
+  padding-block: 1rem;
+}
+
+.primary-header .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary-header button {
+  all: unset;
+  display: none;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.primary-header button:focus-visible {
+  outline: 4px solid var(--color-shades-dark);
+  outline-offset: 4px;
+  border: none;
+}
+
+.primary-header button .line {
+  transition:
+    y 300ms ease-in 300ms,
+    rotate 300ms ease-in,
+    opacity 0ms 300ms;
+  transform-origin: center;
+}
+
+.primary-header button[aria-expanded="true"] .line {
+  transition:
+    y 300ms ease-in,
+    rotate 300ms ease-in 300ms,
+    opacity 0ms 300ms;
+}
+
+.primary-header button[aria-expanded="true"] :is(.top, .bottom) {
+  y: 45px;
+}
+
+.primary-header button[aria-expanded="true"] .top {
+  rotate: 45deg;
+}
+
+.primary-header button[aria-expanded="true"] .bottom {
+  rotate: -45deg;
+}
+
+.primary-header button[aria-expanded="true"] .middle {
+  opacity: 0;
+}
+
+
+.primary-header ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.primary-header a {
+  color: var(--color-shades-dark);
+  text-decoration: none;
+  transition: all 350ms ease-in;
+}
+
+.primary-header a:where(:hover, :focus) {
+  color: var(--color-highlight);
+}
+
+.primary-header [aria-current="page"] {
+  color: var(--color-highlight);
+}
+
+@media (max-width: 768px) {
+
+  .primary-header button {
+    display: flex;
+  }
+
+  .primary-header nav {
+    position: fixed;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+  }
+
+  .primary-header ul {
+    background: rgb(255, 255, 255);
+    box-shadow: var(--nav-list-shadow, -5px 0 11px 0 rgb(0 0 0 / 0.2));
+    display: flex;
+    flex-direction: var(--nav-list-layout, column);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.9rem;
+    height: var(--nav-list-height, 100vh);
+    padding: var(--nav-list-padding, 8rem);
+    position: var(--nav-list-position, fixed);
+    inset-block-start: 0;
+    inset-inline-end: 0;
+    width: var(--nav-list-width, min(22rem, 80vw));
+    transition: all 350ms ease-in;
+  }
+
+  .primary-header .main-navigation[data-visible="false"] ul {
+    visibility: hidden;
+    transform: translateX(100%);
+  }
+
+  .primary-header .main-navigation[data-visible="true"] ul {
+    visibility: visible;
+    transform: translateX(0%);
+  }
+
+}

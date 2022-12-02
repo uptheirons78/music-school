@@ -1,3 +1,9 @@
 * {
+  --color-text: #393939;
+  --color-shades-dark: rgb(25, 25, 25);
+  --color-shades-light: rgb(165, 167, 175);
+  --color-highlight: rgb(24, 54, 145);
+  --color-hamburger: var(--color-text);
   --container-width: 1100px;
+  --main-font: Segoe UI, system-ui, -apple-system, sans-serif;
 }

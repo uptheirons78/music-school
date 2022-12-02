@@ -23,8 +23,10 @@ get_header();
   <?php if (have_posts()) : ?>
     <?php while (have_posts()) : ?>
       <?php the_post(); ?>
-      <h2><?php the_title(); ?></h2>
-      <?php the_content(); ?>
+      <article class="py-2">
+        <h2><?php the_title(); ?></h2>
+        <?php the_content(); ?>
+      </article>
     <?php endwhile; ?>
   <?php else : ?>
     <h2><?php echo __('There is no content to display here.', 'music-school'); ?></h2>

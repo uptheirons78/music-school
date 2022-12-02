@@ -15,6 +15,11 @@ if (!defined('ABSPATH')) {
 /**
  * Define Constants
  */
-define('MUSIC-SCHOOL_THEME_VERSION', '1.0.0');
-define('MUSIC-SCHOOL_THEME_DIR', get_template_directory() );
-define('MUSIC-SCHOOL_THEME_URI', get_template_directory_uri());
+define('THEME_VERSION', '1.0.0');
+define('THEME_DIR', get_template_directory() );
+define('THEME_URI', get_template_directory_uri());
+
+/**
+ * Enqueue Scripts and Styles
+ */
+require THEME_DIR . '/includes/enqueue-scripts.php';

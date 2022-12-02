@@ -1,0 +1,24 @@
+{
+  "name": "music-school",
+  "version": "1.0.0",
+  "description": "Music School Website built with WordPress",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm-run-all --parallel sync start",
+    "sync": "browser-sync start -p 'musicschool.local' --files '**/*.php' 'build/*.js' 'build/*.css'",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "keywords": [
+    "WordPress",
+    "WordPress Development",
+    "WordPress Theme Development"
+  ],
+  "author": "Mauro Bono <mauro@maurobono.com>",
+  "license": "GPL-2.0-or-later",
+  "dependencies": {
+    "@wordpress/scripts": "^24.6.0",
+    "browser-sync": "^2.27.10",
+    "npm-run-all": "^4.1.5"
+  }
+}

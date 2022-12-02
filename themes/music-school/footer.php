@@ -17,8 +17,8 @@ if (!defined('ABSPATH')) {
 
 ?>
 
-<footer class="site-footer">
-  <div class="site-info">
+<footer class="site-footer py-2">
+  <div class="site-info container">
     <p>Copyright &copy; <?php echo date('Y'); ?> MB Development
       <span class="sep"> | </span>
       <?php

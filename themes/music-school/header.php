@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
     <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'music-school'); ?></a>
 
     <header id="masthead" class="site-header">
-      <div class="site-branding">
+      <div class="site-branding container">
         <h1 class="site-title">
           <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
             <?php bloginfo('name'); ?>

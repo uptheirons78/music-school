@@ -6,6 +6,3 @@ node_modules/
 
 # map files
 *.map
-
-# ignore visual studio code
-.vscode

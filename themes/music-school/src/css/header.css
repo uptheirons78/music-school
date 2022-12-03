@@ -78,6 +78,10 @@
   color: var(--color-highlight);
 }
 
+.site-title {
+  font-size: var(--font-size-fluid-1);
+}
+
 @media (max-width: 768px) {
 
   .primary-header button {

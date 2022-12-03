@@ -23,3 +23,20 @@
 .my-2 {margin-block: 1rem;}
 .my-3 {margin-block: 1.5rem;}
 .my-4 {margin-block: 2rem;}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  flex-direction: row;
+  gap: var(--size-2);
+}
+
+.breadcrumbs li a {
+  color: var(--gray-9);
+}
+
+.breadcrumbs li+li::before {
+  padding-right: var(--size-1);
+  color: var(--purple-8);
+  content: "\203a";
+}

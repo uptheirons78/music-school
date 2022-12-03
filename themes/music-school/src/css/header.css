@@ -1,5 +1,9 @@
 .primary-header {
-  padding-block: 1rem;
+  padding-block: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .primary-header .container {
@@ -65,7 +69,7 @@
 }
 
 .primary-header a {
-  color: var(--color-shades-dark);
+  color: var(--gray-2);
   text-decoration: none;
   transition: all 350ms ease-in;
 }
@@ -109,6 +113,10 @@
     inset-inline-end: 0;
     width: var(--nav-list-width, min(22rem, 80vw));
     transition: all 350ms ease-in;
+  }
+
+  .primary-header ul li a {
+    color: var(--gray-10);
   }
 
   .primary-header .main-navigation[data-visible="false"] ul {

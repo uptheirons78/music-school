@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all pages.
  *
@@ -24,7 +25,7 @@ get_header();
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : ?>
     <?php the_post(); ?>
-    <section class="page-banner" style="background-image: url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
+    <section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
       <div class="container">
         <h2><?php the_title(); ?></h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ad!</p>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The front page template file.
  *
@@ -20,7 +21,7 @@ if (!defined('ABSPATH')) {
 get_header();
 
 ?>
-<section class="page-banner" style="background-image: url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
+<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
   <div class="container">
     <h1><?php bloginfo('name'); ?></h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ad!</p>

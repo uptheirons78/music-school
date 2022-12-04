@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 get_header();
 
 ?>
-<section class="page-banner" style="background-image: url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
+<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
   <div class="container">
     <?php if (is_home()) : ?>
       <h1><?php echo __('Blog', 'music-school'); ?></h1>
@@ -32,8 +32,8 @@ get_header();
 <?php if (have_posts()) : ?>
   <section class="page-content">
     <div class="container">
-  <?php while (have_posts()) : ?>
-      <?php the_post(); ?>
+      <?php while (have_posts()) : ?>
+        <?php the_post(); ?>
         <article class="py-2">
           <h2><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
           <div class="meta">
@@ -46,8 +46,8 @@ get_header();
             <p><a href="<?php esc_url(the_permalink()); ?>"><?php echo __('Read more', 'music-school'); ?> &raquo;</a></p>
           </div>
         </article>
-  <?php endwhile; ?>
-  <?php echo paginate_links(); ?>
+      <?php endwhile; ?>
+      <?php echo paginate_links(); ?>
     </div>
   </section>
 <?php else : ?>

@@ -76,7 +76,7 @@ get_header();
     </section>
   <?php endwhile; ?>
 <?php else : ?>
-  <h2><?php echo __('There is no content to display here.', 'music-school'); ?></h2>
+  <?php get_template_part('template-parts/content', 'none'); ?>
 <?php endif; ?>
 
 

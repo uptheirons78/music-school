@@ -34,7 +34,7 @@ get_header();
       <div class="container py-4">
         <ul class="breadcrumbs py-1">
           <li>
-            <a href="<?php echo get_post_type_archive_link( 'post' ); ?>">
+            <a href="<?php echo get_post_type_archive_link('post'); ?>">
               <?php echo __('Blog', 'music-school'); ?>
             </a>
           </li>
@@ -47,7 +47,7 @@ get_header();
     </article>
   <?php endwhile; ?>
 <?php else : ?>
-  <h2><?php echo __('There is no content to display here.', 'music-school'); ?></h2>
+  <?php get_template_part('template-parts/content', 'none'); ?>
 <?php endif; ?>
 
 <?php get_footer(); ?>

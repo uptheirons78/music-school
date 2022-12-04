@@ -27,20 +27,31 @@ get_header();
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ad!</p>
   </div>
 </section>
-<?php if (have_posts()) : ?>
-  <?php while (have_posts()) : ?>
-    <?php the_post(); ?>
-    <section class="page-content">
-      <div class="container">
+<section class="blog-section">
+  <div class="container py-4">
+    <h1>From our blog</h1>
+    <?php
+    $args = array(
+      'posts_per_page' => 2
+    );
+    $news = new WP_Query($args);
+    ?>
+    <?php if ($news->have_posts()) : ?>
+      <?php while ($news->have_posts()) : $news->the_post(); ?>
         <article class="py-2">
-          <h2><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
-          <?php the_content(); ?>
+          <h3><?php the_title(); ?></h3>
+          <p><?php echo __('Published on: ', 'music-school'); ?><span><?php echo the_time('d M, Y') ?></span></p>
+          <!-- you can use also wp_trim_words(the_content(), $num_of_words) -->
+          <p class="py-1"><?php the_excerpt(); ?></p>
+          <p><a href="<?php the_permalink(); ?>"><?php echo __('Read more') ?>&raquo;</a></p>
         </article>
-      </div>
-    </section>
-  <?php endwhile; ?>
-<?php else : ?>
-  <?php get_template_part('template-parts/content', 'none'); ?>
-<?php endif; ?>
+      <?php endwhile; ?>
+    <?php endif; ?>
+    <?php wp_reset_postdata(); ?>
+    <a href="<?php echo get_post_type_archive_link('post'); ?>">
+      <?php echo __('See all posts', 'music-school'); ?>
+    </a>
+  </div>
+</section>
 
 <?php get_footer(); ?>

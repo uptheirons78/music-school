@@ -58,7 +58,7 @@ function music_school_event_post_type() {
   );
 
   register_post_type('event', $event_args);
-  register_taxonomy('event_type', ['event'], $taxonomy_args);
+  register_taxonomy('event-type', ['event'], $taxonomy_args);
 }
 
 add_action('init', 'music_school_event_post_type');

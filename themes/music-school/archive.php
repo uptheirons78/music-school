@@ -35,7 +35,9 @@ get_header();
           <h2><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
           <div class="meta">
             <?php if (get_post_type() === 'event') : ?>
-              <p><span><?php _e('Event Date: ', 'music-school') ?></span><span>HERE EVENT DATE</span></p>
+              <?php $eventDate = new DateTime(get_field('event_date')); ?>
+              <?php $date = $eventDate->format('d M, Y'); ?>
+              <p><span><?php _e('Event Date: ', 'music-school') ?></span><span><?php echo $date; ?></span></p>
             <?php else : ?>
               <p>
                 <span><?php _e('Posted by', 'music-school'); ?></span> <?php the_author_posts_link(); ?> <span><?php _e(' on ', 'music-school'); ?></span> <?php the_time('d M, Y'); ?> <span><?php _e(' in ', 'music-school'); ?></span> <?php echo get_the_category_list(', '); ?>

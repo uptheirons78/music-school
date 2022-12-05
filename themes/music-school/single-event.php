@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * The template for displaying all single events.
@@ -39,6 +40,9 @@ get_header();
           <li><?php the_title(); ?></li>
         </ul>
         <div class="post-content py-2">
+          <?php $eventDate = new DateTime(get_field('event_date')); ?>
+          <?php $date = $eventDate->format('d M, Y'); ?>
+          <p class="py-2"><span><?php _e('Event Date: ', 'music-school') ?></span><span><?php echo $date; ?></span></p>
           <?php the_content(); ?>
         </div>
       </div>

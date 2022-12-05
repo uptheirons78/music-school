@@ -22,7 +22,9 @@
       <?php while ($events->have_posts()) : $events->the_post(); ?>
         <article class="py-2">
           <h3><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h3>
-          <p><span><?php _e('Event Date: ', 'music-school') ?></span><span>HERE EVENT DATE</span></p>
+          <?php $eventDate = new DateTime(get_field('event_date')); ?>
+          <?php $date = $eventDate->format('d M, Y'); ?>
+          <p><span><?php _e('Event Date: ', 'music-school') ?></span><span><?php echo $date; ?></span></p>
           <p><?php echo get_the_term_list($post->ID, 'event-type', 'Event Type: ', ', '); ?></p>
           <!-- you can use also wp_trim_words(the_content(), $num_of_words) -->
           <p class="py-1"><?php the_excerpt(); ?></p>

@@ -41,9 +41,9 @@ function music_school_event_post_type() {
     'can_export'          => true,
     'rewrite_no_front'    => false,
     'show_in_menu'        => true,
-    'supports'  => array('title', 'editor', 'thumbnail'),
-    'taxonomies' => array('event_type'),
-    'rewrite' => true
+    'supports'  => array('title', 'editor', 'excerpt', 'thumbnail'),
+    'taxonomies' => array('event-type'),
+    'rewrite' => array('slug' => 'events'),
   );
 
   $taxonomy_args = array(

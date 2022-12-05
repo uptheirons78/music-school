@@ -28,3 +28,9 @@ require THEME_DIR . '/includes/setup.php';
  * Enqueue Scripts and Styles
  */
 require THEME_DIR . '/includes/enqueue-scripts.php';
+
+/**
+ * Event post type
+ */
+require THEME_DIR . '/includes/cpt/event-post-type.php';
+

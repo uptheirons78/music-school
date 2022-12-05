@@ -38,7 +38,7 @@ get_header();
           <h2><a href="<?php esc_url(the_permalink()); ?>"><?php the_title(); ?></a></h2>
           <div class="meta">
             <p>
-              Posted by <?php the_author_posts_link(); ?> on <?php the_time('d M, Y'); ?> in <?php echo get_the_category_list(', '); ?>
+              Posted by <?php the_author_posts_link(); ?> on <?php the_time(get_option('date_format')); ?> in <?php echo get_the_category_list(', '); ?>
             </p>
           </div>
           <div class="generic-content py-2">

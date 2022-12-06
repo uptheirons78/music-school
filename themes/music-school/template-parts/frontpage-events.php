@@ -10,13 +10,31 @@
 ?>
 <section class="events-section">
   <div class="container py-4">
-    <h1>Our Events</h1>
+    <h1><?php echo __('Our Events', 'music-school'); ?></h1>
     <?php
-    $args = array(
-      'posts_per_page' => 2,
-      'post_type' => 'event'
-    );
-    $events = new WP_Query($args);
+      /**
+       * Events Custom Query: ordered by Event Date custom field
+       */
+      $today = date('Ymd');
+
+      $meta_query_args = array(
+        'key'     => 'event_date',
+        'compare' => '>=',
+        'value'   => $today,
+        'type'    => 'numeric'
+      );
+
+      $args = array(
+        'posts_per_page'  => 2,
+        'post_type'       => 'event',
+        'meta_key'        => 'event_date', //use event_date meta_key to order the query
+        'orderby'         => 'meta_value_num', //order by the numeric value of a meta value (like: event_date)
+        'order'           => 'ASC', // order the query ASCENDING by event_date
+        'meta_query'      => array($meta_query_args) // how the query is ordered
+      );
+
+      $events = new WP_Query($args);
+
     ?>
     <?php if ($events->have_posts()) : ?>
       <?php while ($events->have_posts()) : $events->the_post(); ?>

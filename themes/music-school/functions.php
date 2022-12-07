@@ -44,3 +44,8 @@ require THEME_DIR . '/includes/cpt/program-post-type.php';
  */
 require THEME_DIR . '/includes/queries/adjust-event-query.php';
 
+/**
+ * Adjust Programs Query
+ */
+require THEME_DIR . '/includes/queries/adjust-program-query.php';
+

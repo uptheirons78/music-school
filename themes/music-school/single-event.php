@@ -45,6 +45,17 @@ get_header();
           <p class="py-2"><span><?php _e('Event Date: ', 'music-school') ?></span><span><?php echo $date; ?></span></p>
           <?php the_content(); ?>
         </div>
+        <?php $related_programs = get_field('related_program'); ?>
+        <?php if ($related_programs) : ?>
+          <div class="related-programs py-2">
+            <h2><?php echo __('Related Programs', 'music-school'); ?></h2>
+            <ul>
+              <?php foreach ($related_programs as $program) : ?>
+                <li><a href="<?php echo get_the_permalink($program); ?>"><?php echo get_the_title($program); ?></a></li>
+              <?php endforeach; ?>
+            </ul>
+          </div>
+        <?php endif; ?>
       </div>
     </article>
   <?php endwhile; ?>

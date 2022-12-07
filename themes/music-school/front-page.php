@@ -31,7 +31,7 @@ get_header();
 <!-- Blog Section -->
 <?php get_template_part('template-parts/frontpage', 'blog'); ?>
 
-<!-- Blog Section -->
+<!-- Events Section -->
 <?php get_template_part('template-parts/frontpage', 'events'); ?>
 
 <?php get_footer(); ?>

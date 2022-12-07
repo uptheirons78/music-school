@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * The template for displaying all single programs.
@@ -39,6 +40,8 @@ get_header();
         <div class="post-content py-2">
           <?php the_content(); ?>
         </div>
+        <!-- Related Events Section -->
+        <?php get_template_part('template-parts/content', 'related-events'); ?>
       </div>
     </article>
   <?php endwhile; ?>

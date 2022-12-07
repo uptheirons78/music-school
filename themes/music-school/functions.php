@@ -35,6 +35,11 @@ require THEME_DIR . '/includes/enqueue-scripts.php';
 require THEME_DIR . '/includes/cpt/event-post-type.php';
 
 /**
+ * Program post type
+ */
+require THEME_DIR . '/includes/cpt/program-post-type.php';
+
+/**
  * Adjust Events Query
  */
 require THEME_DIR . '/includes/queries/adjust-event-query.php';

@@ -25,9 +25,7 @@ get_header();
     <article>
       <div class="container py-4">
         <div class="professor-image">
-          <div style="width: 75px;">
-            <?php echo get_the_post_thumbnail(); ?>
-          </div>
+          <?php echo get_the_post_thumbnail($post->ID, 'professorPortrait'); ?>
         </div>
         <div class="post-content py-2">
           <?php the_content(); ?>

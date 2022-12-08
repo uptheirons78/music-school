@@ -45,6 +45,12 @@ function mb_setup()
 		*/
   add_theme_support('post-thumbnails');
 
+  /*
+		* Custom Image Sizes.
+		*
+		*/
+  add_image_size('professorPortrait', 75, 75, true);
+
   // Register theme menus
   register_nav_menus(
     array(

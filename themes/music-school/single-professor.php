@@ -1,5 +1,4 @@
 <?php
-
 /**
  *
  * The template for displaying all single professor.
@@ -25,6 +24,11 @@ get_header();
     </section>
     <article>
       <div class="container py-4">
+        <div class="professor-image">
+          <div style="width: 75px;">
+            <?php echo get_the_post_thumbnail(); ?>
+          </div>
+        </div>
         <div class="post-content py-2">
           <?php the_content(); ?>
         </div>

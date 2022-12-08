@@ -33,6 +33,7 @@ $professors = new WP_Query($args);
       <?php while ($professors->have_posts()) : $professors->the_post(); ?>
 
         <li class="py-2">
+          <div style="width: 35px;"><?php echo get_the_post_thumbnail(); ?></div>
           <h3><a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a></h3>
         </li>
 

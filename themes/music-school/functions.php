@@ -40,6 +40,11 @@ require THEME_DIR . '/includes/cpt/event-post-type.php';
 require THEME_DIR . '/includes/cpt/program-post-type.php';
 
 /**
+ * Professor post type
+ */
+require THEME_DIR . '/includes/cpt/professor-post-type.php';
+
+/**
  * Adjust Events Query
  */
 require THEME_DIR . '/includes/queries/adjust-event-query.php';
@@ -48,4 +53,3 @@ require THEME_DIR . '/includes/queries/adjust-event-query.php';
  * Adjust Programs Query
  */
 require THEME_DIR . '/includes/queries/adjust-program-query.php';
-

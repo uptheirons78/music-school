@@ -50,6 +50,7 @@ function mb_setup()
 		*
 		*/
   add_image_size('professorPortrait', 75, 75, true);
+  add_image_size('pageBanner', 1500, 350, true);
 
   // Register theme menus
   register_nav_menus(

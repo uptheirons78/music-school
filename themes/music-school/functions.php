@@ -53,3 +53,8 @@ require THEME_DIR . '/includes/queries/adjust-event-query.php';
  * Adjust Programs Query
  */
 require THEME_DIR . '/includes/queries/adjust-program-query.php';
+
+/**
+ * Page Banner
+ */
+require THEME_DIR . '/includes/utility/page-banner.php';

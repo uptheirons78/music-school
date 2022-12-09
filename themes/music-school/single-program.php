@@ -18,15 +18,7 @@ get_header();
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : ?>
     <?php the_post(); ?>
-    <section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.7)), url(<?php echo get_theme_file_uri('/assets/img/program.jpg'); ?>);">
-      <div class="container">
-        <h2><?php the_title(); ?></h2>
-        <p>
-          <span><?php _e('Created on ', 'music-school'); ?></span>
-          <span><?php the_time(get_option('date_format')) ?></span>
-        </p>
-      </div>
-    </section>
+    <?php pageBanner(); ?>
     <article>
       <div class="container py-4">
         <ul class="breadcrumbs py-1">

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying all programs.
  *
@@ -13,13 +12,19 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
+/**
+ * Output the page banner with a function: pageBanner()
+ */
+$page_banner_args = array(
+  'title' => __('All Our Programs', 'music-school'),
+  'subtitle' => __('Find your path, follow your dream.', 'music-school'),
+  'image' => get_theme_file_uri('/assets/img/program.jpg')
+);
+
+pageBanner($page_banner_args);
+
 ?>
-<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/program.jpg'); ?>);">
-  <div class="container">
-    <h1><?php _e('All Our Programs', 'music-school'); ?></h1>
-    <p><?php _e('Find your path, follow your dream.', 'music-school'); ?></p>
-  </div>
-</section>
+
 <?php if (have_posts()) : ?>
   <section class="page-content">
     <div class="container">

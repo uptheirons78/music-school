@@ -17,23 +17,7 @@ get_header();
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : ?>
     <?php the_post(); ?>
-    <?php
-      $default_image = get_theme_file_uri('/assets/img/professor.jpg');
-      $custom_image = get_field('page_banner_image');
-      if ($custom_image) {
-        $background_image = $custom_image['sizes']['pageBanner'];
-      } else {
-        $background_image = $default_image;
-      }
-    ?>
-    <section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.7)), url(<?php echo $background_image; ?>);">
-      <div class="container">
-        <h2><?php the_title(); ?></h2>
-        <?php if (get_field('page_banner_subtitle')): ?>
-          <p><?php echo get_field('page_banner_subtitle'); ?></p>
-        <?php endif; ?>
-      </div>
-    </section>
+    <?php pageBanner(); ?>
     <article>
       <div class="container py-4">
         <div class="professor-image">

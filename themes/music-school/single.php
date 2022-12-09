@@ -22,14 +22,23 @@ get_header();
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : ?>
     <?php the_post(); ?>
-    <section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
-      <div class="container">
-        <h2><?php the_title(); ?></h2>
-        <p>
-          Posted by <?php the_author_posts_link(); ?> on <?php the_time(get_option('date_format')); ?> in <?php echo get_the_category_list(', '); ?>
-        </p>
-      </div>
-    </section>
+
+    <?php
+
+    $meta = '<span>' . __('Posted by ', 'music-school') . '</span>'
+      . '<span>' . get_the_author_posts_link() . '</span>'
+      . '<span>' . __(' on ', 'music-school') . '</span>'
+      . '<span>' . get_the_time(get_option('date_format')) . '</span>'
+      . '<span>' . __(' in ', 'music-school') . '</span>'
+      . '<span>' . get_the_category_list(', ') . '</span>';
+
+    $page_banner_args = array(
+      'subtitle' => $meta
+    );
+
+    pageBanner($page_banner_args);
+
+    ?>
     <article>
       <div class="container py-4">
         <ul class="breadcrumbs py-1">

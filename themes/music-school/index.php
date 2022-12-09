@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The main template file.
  *
@@ -20,15 +19,24 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
+/**
+ * Output the page banner with a function: pageBanner()
+ */
+if (is_home()) {
+  $page_title = __('Blog', 'music-school');
+} else {
+  $page_title = get_the_title();
+}
+$page_banner_args = array(
+  'title' => $page_title,
+  'subtitle' => __('Find your path, follow your dream.', 'music-school'),
+  'image' => get_theme_file_uri('/assets/img/violin-player.jpg')
+);
+
+pageBanner($page_banner_args);
+
 ?>
-<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
-  <div class="container">
-    <?php if (is_home()) : ?>
-      <h1><?php echo __('Blog', 'music-school'); ?></h1>
-    <?php endif; ?>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ad!</p>
-  </div>
-</section>
+
 <?php if (have_posts()) : ?>
   <section class="page-content">
     <div class="container">

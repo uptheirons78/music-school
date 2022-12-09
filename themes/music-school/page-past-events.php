@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for the page: Past Events.
  *
@@ -13,14 +12,20 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
-?>
-<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/rock-event.jpg'); ?>);">
-  <div class="container">
-    <h1><?php _e('Past Events', 'music-school'); ?></h1>
-    <p><?php _e('Take a look at our past events archive.', 'music-school'); ?></p>
-  </div>
-</section>
-<?php
+/**
+ * Output the page banner with a function: pageBanner()
+ */
+$page_banner_args = array(
+  'title' => __('Past Events', 'music-school'),
+  'subtitle' => __('Take a look at our past events archive.', 'music-school'),
+  'image' => get_theme_file_uri('/assets/img/rock-event.jpg')
+);
+
+pageBanner($page_banner_args);
+
+/**
+ * Past Events Custom Query
+ */
 $today = date('Ymd');
 
 $meta_query_args = array(
@@ -40,7 +45,9 @@ $past_events_query_args = array(
 );
 
 $pastEvents = new WP_Query($past_events_query_args);
+
 ?>
+
 <?php if ($pastEvents->have_posts()) : ?>
   <section class="page-content">
     <div class="container">

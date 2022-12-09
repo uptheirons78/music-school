@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The template for displaying all pages.
  *
@@ -25,13 +24,9 @@ get_header();
 <?php if (have_posts()) : ?>
   <?php while (have_posts()) : ?>
     <?php the_post(); ?>
-    <!-- <section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
-      <div class="container">
-        <h2><?php the_title(); ?></h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, ad!</p>
-      </div>
-    </section> -->
+    <!-- Output the page banner -->
     <?php pageBanner(); ?>
+
     <section class="page-content">
       <div class="container">
         <?php $parent_ID = wp_get_post_parent_id(get_the_ID()); ?>
@@ -75,6 +70,7 @@ get_header();
         <?php endif; ?>
       </div>
     </section>
+
   <?php endwhile; ?>
 <?php else : ?>
   <?php get_template_part('template-parts/content', 'none'); ?>

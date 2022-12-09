@@ -15,17 +15,19 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
+/**
+ * Output the page banner with a function: pageBanner()
+ */
+$page_banner_args = array(
+  'title' => get_the_archive_title(),
+  'subtitle' => get_the_archive_description(),
+  'image' => get_theme_file_uri('/assets/img/violin-player.jpg')
+);
+
+pageBanner($page_banner_args);
+
 ?>
-<section class="page-banner" style="background-image: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.9)), url(<?php echo get_theme_file_uri('/assets/img/violin-player.jpg'); ?>);">
-  <div class="container">
-    <h1><?php the_archive_title(); ?></h1>
-    <?php if (get_the_archive_description()) : ?>
-      <p><?php the_archive_description(); ?></p>
-    <?php else : ?>
-      <p><?php echo __('No archive description to display here.', 'music-school'); ?></p>
-    <?php endif; ?>
-  </div>
-</section>
+
 <?php if (have_posts()) : ?>
   <section class="page-content">
     <div class="container">

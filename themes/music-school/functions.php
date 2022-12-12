@@ -45,6 +45,11 @@ require THEME_DIR . '/includes/cpt/program-post-type.php';
 require THEME_DIR . '/includes/cpt/professor-post-type.php';
 
 /**
+ * Campus post type
+ */
+require THEME_DIR . '/includes/cpt/campus-post-type.php';
+
+/**
  * Adjust Events Query
  */
 require THEME_DIR . '/includes/queries/adjust-event-query.php';

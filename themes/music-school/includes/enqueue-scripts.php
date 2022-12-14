@@ -15,8 +15,10 @@ function mb_scripts() {
   wp_enqueue_script('main-js-file', THEME_URI . '/build/index.js', array(), THEME_VERSION, true);
   wp_localize_script( 'main-js-file', 'fields_js', array('api' => MAPBOX_API));
 
-  // Leaflet Maps
-  wp_enqueue_style('leaflet-map-css', '//unpkg.com/leaflet@1.9.3/dist/leaflet.css');
-  wp_enqueue_script('leaflet-js', '//unpkg.com/leaflet@1.9.3/dist/leaflet.js', NULL, '1.9.3', false );
+  // Leaflet CSS and JS: load only for single or archive pages of the post type 'campus'
+  if (is_singular('campus') || is_post_type_archive('campus')) {
+    wp_enqueue_style('leaflet-map-css', '//unpkg.com/leaflet@1.9.3/dist/leaflet.css');
+    wp_enqueue_script('leaflet-js', '//unpkg.com/leaflet@1.9.3/dist/leaflet.js', NULL, '1.9.3', false );
+  }
 }
 add_action('wp_enqueue_scripts', 'mb_scripts');

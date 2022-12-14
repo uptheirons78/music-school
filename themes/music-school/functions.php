@@ -60,6 +60,11 @@ require THEME_DIR . '/includes/queries/adjust-event-query.php';
 require THEME_DIR . '/includes/queries/adjust-program-query.php';
 
 /**
+ * Adjust Campus Query
+ */
+require THEME_DIR . '/includes/queries/adjust-campus-query.php';
+
+/**
  * Page Banner
  */
 require THEME_DIR . '/includes/utility/page-banner.php';

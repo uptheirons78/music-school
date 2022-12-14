@@ -16,9 +16,9 @@ class LeafletMap {
     });
   }
   new_map($el) {
-    let $markers = $el.querySelectorAll('.marker');
-    let map = L.map($el).setView([0, 0], 18);
-    let apiToken = fields_js.api;
+    const $markers = $el.querySelectorAll('.marker');
+    const map = L.map($el).setView([0, 0], 18);
+    const apiToken = fields_js.api;
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -28,7 +28,7 @@ class LeafletMap {
       accessToken: apiToken
     }).addTo(map);
     map.markers = [];
-    var that = this;
+    const that = this;
 
     // add markers
     $markers.forEach(function (x) {
@@ -40,7 +40,7 @@ class LeafletMap {
   } // end new_map
 
   add_marker($marker, map) {
-    var marker = L.marker([$marker.getAttribute('data-lat'), $marker.getAttribute('data-lng')]).addTo(map);
+    const marker = L.marker([$marker.getAttribute('data-lat'), $marker.getAttribute('data-lng')]).addTo(map);
     map.markers.push(marker);
 
     // if marker contains HTML, add it to an infoWindow
@@ -51,11 +51,11 @@ class LeafletMap {
   } // end add_marker
 
   center_map(map) {
-    var bounds = new L.LatLngBounds();
+    const bounds = new L.LatLngBounds();
 
     // loop through all markers and create bounds
     map.markers.forEach(function (marker) {
-      var latlng = new L.LatLng(marker._latlng.lat, marker._latlng.lng);
+      const latlng = new L.LatLng(marker._latlng.lat, marker._latlng.lng);
       bounds.extend(latlng);
     });
     map.fitBounds(bounds);
@@ -112,6 +112,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!****************************!*\
   !*** ./src/css/header.css ***!
   \****************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/css/map.css":
+/*!*************************!*\
+  !*** ./src/css/map.css ***!
+  \*************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -241,10 +254,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_base_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/base.css */ "./src/css/base.css");
 /* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/header.css */ "./src/css/header.css");
 /* harmony import */ var _css_single_page_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./css/single-page.css */ "./src/css/single-page.css");
-/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./js/navigation.js */ "./src/js/navigation.js");
-/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_js_navigation_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _js_leaflet__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/leaflet */ "./src/js/leaflet.js");
+/* harmony import */ var _css_map_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css/map.css */ "./src/css/map.css");
+/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/navigation.js */ "./src/js/navigation.js");
+/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_js_navigation_js__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _js_leaflet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/leaflet */ "./src/js/leaflet.js");
 // CSS
+
 
 
 
@@ -256,7 +271,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // LeafletMap
 
-const leafletMap = new _js_leaflet__WEBPACK_IMPORTED_MODULE_6__["default"]();
+const leafletMap = new _js_leaflet__WEBPACK_IMPORTED_MODULE_7__["default"]();
 }();
 /******/ })()
 ;

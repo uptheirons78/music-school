@@ -322,5 +322,12 @@
   background-repeat: no-repeat;
   background-position: center center;
 }
+/*!*********************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/css/map.css ***!
+  \*********************************************************************************************************************************************************************/
+.acf-map {
+  min-height: 450px !important;
+  margin-block: 2rem;
+}
 
 /*# sourceMappingURL=index.css.map*/

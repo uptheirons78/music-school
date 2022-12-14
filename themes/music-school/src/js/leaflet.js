@@ -6,11 +6,11 @@ class LeafletMap {
   }
 
   new_map($el) {
-    let $markers = $el.querySelectorAll('.marker');
+    const $markers = $el.querySelectorAll('.marker');
 
-    let map = L.map($el).setView([0, 0], 18);
+    const map = L.map($el).setView([0, 0], 18);
 
-    let apiToken = fields_js.api;
+    const apiToken = fields_js.api;
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution:
@@ -23,7 +23,7 @@ class LeafletMap {
     }).addTo(map);
 
     map.markers = [];
-    var that = this;
+    const that = this;
 
     // add markers
     $markers.forEach(function (x) {
@@ -35,7 +35,7 @@ class LeafletMap {
   } // end new_map
 
   add_marker($marker, map) {
-    var marker = L.marker([$marker.getAttribute('data-lat'), $marker.getAttribute('data-lng')]).addTo(map);
+    const marker = L.marker([$marker.getAttribute('data-lat'), $marker.getAttribute('data-lng')]).addTo(map);
 
     map.markers.push(marker);
 
@@ -47,11 +47,11 @@ class LeafletMap {
   } // end add_marker
 
   center_map(map) {
-    var bounds = new L.LatLngBounds();
+    const bounds = new L.LatLngBounds();
 
     // loop through all markers and create bounds
     map.markers.forEach(function (marker) {
-      var latlng = new L.LatLng(marker._latlng.lat, marker._latlng.lng);
+      const latlng = new L.LatLng(marker._latlng.lat, marker._latlng.lng);
 
       bounds.extend(latlng);
     });

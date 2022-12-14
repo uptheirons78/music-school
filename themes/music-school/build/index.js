@@ -95,6 +95,39 @@ hamburger.addEventListener('keyup', e => {
 
 /***/ }),
 
+/***/ "./src/js/search.js":
+/*!**************************!*\
+  !*** ./src/js/search.js ***!
+  \**************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Search {
+  constructor() {
+    this.openButton = document.querySelector('#search-button');
+    this.closeButton = document.querySelector('#search-close-button');
+    this.searchOverlay = document.querySelector('#search-overlay');
+    this.events();
+  }
+
+  // Events
+  events() {
+    this.openButton.addEventListener('click', this.openOverlay.bind(this));
+    this.closeButton.addEventListener('click', this.closeOverlay.bind(this));
+  }
+  // Methods
+  openOverlay() {
+    this.searchOverlay.classList.add('search-overlay--active');
+  }
+  closeOverlay() {
+    this.searchOverlay.classList.remove('search-overlay--active');
+  }
+}
+/* harmony default export */ __webpack_exports__["default"] = (Search);
+
+/***/ }),
+
 /***/ "./src/css/base.css":
 /*!**************************!*\
   !*** ./src/css/base.css ***!
@@ -258,6 +291,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/navigation.js */ "./src/js/navigation.js");
 /* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_js_navigation_js__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _js_leaflet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/leaflet */ "./src/js/leaflet.js");
+/* harmony import */ var _js_search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./js/search */ "./src/js/search.js");
 // CSS
 
 
@@ -272,6 +306,10 @@ __webpack_require__.r(__webpack_exports__);
 // LeafletMap
 
 const leafletMap = new _js_leaflet__WEBPACK_IMPORTED_MODULE_7__["default"]();
+
+// Search
+
+const search = new _js_search__WEBPACK_IMPORTED_MODULE_8__["default"]();
 }();
 /******/ })()
 ;

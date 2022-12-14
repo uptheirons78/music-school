@@ -12,3 +12,7 @@ import './js/navigation.js';
 // LeafletMap
 import LeafletMap from './js/leaflet';
 const leafletMap = new LeafletMap();
+
+// Search
+import Search from './js/search';
+const search = new Search();

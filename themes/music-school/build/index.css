@@ -177,6 +177,85 @@
   color: var(--purple-8);
   content: "\203a";
 }
+
+/* Search Button */
+.search-container {
+  padding-block: 1rem;
+}
+
+.search-button {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 8px;
+  padding-inline: 16px;
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Search Overlay */
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 0%;
+  background-color: rgba(0,0,0, .9);
+  color: white;
+  visibility: hidden;
+  transition: all 350ms ease-in-out;
+}
+
+.search-overlay.search-overlay--active {
+  width: 100vw;
+  height: 100vh;
+  visibility: visible;
+}
+
+.search-overlay .top {
+  padding-block: 2rem;
+}
+
+.search-overlay .top .container {
+  padding-block: 2rem;
+  padding-inline: 1rem;
+  background-color: rgba(128,128,128, 9);
+}
+
+.search-overlay .top .search-term {
+  width: 100%;
+  min-height: 3rem;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  overflow: hidden;
+  color: #393939;
+}
+
+.search-close-button {
+  background-color: white;
+  color: #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 8px;
+  padding-inline: 16px;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.search-close-button svg {
+  width: 20px;
+  height: 20px;
+}
+
 /*!************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[2].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[2].use[2]!./src/css/header.css ***!
   \************************************************************************************************************************************************************************/

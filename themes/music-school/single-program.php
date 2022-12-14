@@ -32,10 +32,24 @@ get_header();
         <div class="post-content py-2">
           <?php the_content(); ?>
         </div>
+
         <!-- Related Professors Section -->
         <?php get_template_part('template-parts/content', 'related-professors'); ?>
+
         <!-- Related Events Section -->
         <?php get_template_part('template-parts/content', 'related-events'); ?>
+
+        <!-- Related Campuses -->
+        <?php $related_campuses = get_field('related_campus'); ?>
+        <?php if (!empty($related_campuses)) : ?>
+          <hr>
+          <?php echo '<h2 class="py-2">' . get_the_title() . __(' is available at these campuses ') . '</h2>' ?>
+          <ul>
+            <?php foreach($related_campuses as $campus) : ?>
+              <li><a href="<?php echo esc_url(get_the_permalink($campus)); ?>"><?php echo get_the_title($campus); ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        <?php endif; ?>
       </div>
     </article>
   <?php endwhile; ?>

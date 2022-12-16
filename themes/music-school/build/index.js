@@ -1,13 +1,13 @@
 /******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/js/leaflet.js":
+/***/ "./src/js/Leaflet.js":
 /*!***************************!*\
-  !*** ./src/js/leaflet.js ***!
+  !*** ./src/js/Leaflet.js ***!
   \***************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 class LeafletMap {
   constructor() {
@@ -66,42 +66,55 @@ class LeafletMap {
 
 /***/ }),
 
-/***/ "./src/js/navigation.js":
+/***/ "./src/js/Navigation.js":
 /*!******************************!*\
-  !*** ./src/js/navigation.js ***!
+  !*** ./src/js/Navigation.js ***!
   \******************************/
-/***/ (function() {
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-const hamburger = document.querySelector('.hamburger');
-const mainNavigation = document.querySelector('.main-navigation');
-hamburger.addEventListener('click', e => {
-  const visibility = mainNavigation.getAttribute('data-visible');
-  if (visibility === 'false') {
-    mainNavigation.setAttribute('data-visible', 'true');
-    hamburger.setAttribute('aria-expanded', true);
-  } else {
-    mainNavigation.setAttribute('data-visible', 'false');
-    hamburger.setAttribute('aria-expanded', false);
+__webpack_require__.r(__webpack_exports__);
+class Navigation {
+  constructor() {
+    this.hamburger = document.querySelector('.hamburger');
+    this.mainNavigation = document.querySelector('.main-navigation');
+    this.events();
   }
-});
-hamburger.addEventListener('keyup', e => {
-  const visibility = mainNavigation.getAttribute('data-visible');
-  if (visibility === 'true' && e.code === 'Escape') {
-    mainNavigation.setAttribute('data-visible', 'false');
-    hamburger.setAttribute('aria-expanded', false);
-    hamburger.focus();
+
+  // Events
+  events() {
+    this.hamburger.addEventListener('click', this.navigationVisibility.bind(this));
+    this.hamburger.addEventListener('keyup', this.navigationVisibilityOnKeyUp.bind(this));
   }
-});
+  // Methods
+  navigationVisibility(e) {
+    const visibility = this.mainNavigation.getAttribute('data-visible');
+    if (visibility === 'false') {
+      this.mainNavigation.setAttribute('data-visible', 'true');
+      this.hamburger.setAttribute('aria-expanded', true);
+    } else {
+      this.mainNavigation.setAttribute('data-visible', 'false');
+      this.hamburger.setAttribute('aria-expanded', false);
+    }
+  }
+  navigationVisibilityOnKeyUp(e) {
+    const visibility = this.mainNavigation.getAttribute('data-visible');
+    if (visibility === 'true' && e.code === 'Escape') {
+      this.mainNavigation.setAttribute('data-visible', 'false');
+      this.hamburger.setAttribute('aria-expanded', false);
+      this.hamburger.focus();
+    }
+  }
+}
+/* harmony default export */ __webpack_exports__["default"] = (Navigation);
 
 /***/ }),
 
-/***/ "./src/js/search.js":
+/***/ "./src/js/Search.js":
 /*!**************************!*\
-  !*** ./src/js/search.js ***!
+  !*** ./src/js/Search.js ***!
   \**************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 class Search {
   constructor() {
@@ -134,7 +147,6 @@ class Search {
   \**************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -147,7 +159,6 @@ __webpack_require__.r(__webpack_exports__);
   \****************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -160,7 +171,6 @@ __webpack_require__.r(__webpack_exports__);
   \*************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -173,7 +183,6 @@ __webpack_require__.r(__webpack_exports__);
   \***************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -186,7 +195,6 @@ __webpack_require__.r(__webpack_exports__);
   \*********************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -199,7 +207,6 @@ __webpack_require__.r(__webpack_exports__);
   \*******************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -233,35 +240,6 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	!function() {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__webpack_require__.d = function(exports, definition) {
-/******/ 			for(var key in definition) {
-/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	!function() {
-/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
@@ -275,9 +253,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 !function() {
-"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
@@ -288,10 +265,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_header_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/header.css */ "./src/css/header.css");
 /* harmony import */ var _css_single_page_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./css/single-page.css */ "./src/css/single-page.css");
 /* harmony import */ var _css_map_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./css/map.css */ "./src/css/map.css");
-/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/navigation.js */ "./src/js/navigation.js");
-/* harmony import */ var _js_navigation_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_js_navigation_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _js_leaflet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/leaflet */ "./src/js/leaflet.js");
-/* harmony import */ var _js_search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./js/search */ "./src/js/search.js");
+/* harmony import */ var _js_Navigation__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/Navigation */ "./src/js/Navigation.js");
+/* harmony import */ var _js_Leaflet__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/Leaflet */ "./src/js/Leaflet.js");
+/* harmony import */ var _js_Search__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./js/Search */ "./src/js/Search.js");
 // CSS
 
 
@@ -300,16 +276,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Navigation
+// Navigation Functionalities
 
+const navigation = new _js_Navigation__WEBPACK_IMPORTED_MODULE_6__["default"]();
 
 // LeafletMap
 
-const leafletMap = new _js_leaflet__WEBPACK_IMPORTED_MODULE_7__["default"]();
+const leafletMap = new _js_Leaflet__WEBPACK_IMPORTED_MODULE_7__["default"]();
 
-// Search
+// Search Functionalities
 
-const search = new _js_search__WEBPACK_IMPORTED_MODULE_8__["default"]();
+const search = new _js_Search__WEBPACK_IMPORTED_MODULE_8__["default"]();
 }();
 /******/ })()
 ;

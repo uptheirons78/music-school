@@ -209,6 +209,7 @@
   color: white;
   visibility: hidden;
   transition: all 350ms ease-in-out;
+  z-index: 9999;
 }
 
 .search-overlay.search-overlay--active {

@@ -24,6 +24,11 @@
 .my-3 {margin-block: 1.5rem;}
 .my-4 {margin-block: 2rem;}
 
+/* No Scroll */
+.body-no-scroll {
+  overflow: hidden;
+}
+
 /* Breadcrumbs */
 .breadcrumbs {
   display: flex;

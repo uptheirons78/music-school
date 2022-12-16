@@ -46,6 +46,10 @@ if (!defined('ABSPATH')) {
         </svg>
       </button>
     </div>
+    <div class="container">
+      <div id="search-overlay-results">
+      </div>
+    </div>
   </div>
 </div>
 

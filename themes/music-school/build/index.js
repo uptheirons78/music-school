@@ -184,11 +184,22 @@ class Search {
     }
     this.previousValue = this.searchInput.value;
   }
-  getResults() {
-    this.resultsContainer.innerHTML = `<p>this will be our searched content...</p>`;
-    this.isSpinnerVisible = false;
+  async getResults() {
+    const searchValue = this.searchInput.value;
+    const url = `http://musicschool.local/wp-json/wp/v2/posts?search=${searchValue}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.resultsContainer.innerHTML = `
+      <h2>General Information</h2>
+      <ul>
+        ${data.map(el => `<li><a href="${el.link}">${el.title.rendered}</a></li>`).join('')}
+      </ul>
+    `;
+
+    // this.isSpinnerVisible = false;
   }
 }
+
 /* harmony default export */ __webpack_exports__["default"] = (Search);
 
 /***/ }),

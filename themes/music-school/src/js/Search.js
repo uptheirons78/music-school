@@ -1,6 +1,9 @@
 class Search {
   // Constructor
   constructor() {
+    // add search overlay markup with javascript
+    this.addSearchHTML();
+
     this.resultsContainer = document.querySelector('#search-overlay-results');
     this.openButton = document.querySelector('#search-button');
     this.closeButton = document.querySelector('#search-close-button');
@@ -26,6 +29,9 @@ class Search {
   // Methods
   openOverlay() {
     this.searchOverlay.classList.add('search-overlay--active');
+    // setTimeout because the html is not already visible when you use JS to build it, as I did
+    setTimeout(() => this.searchInput.focus(), 301);
+    this.searchInput.value = '';
     this.body.classList.add('body-no-scroll');
     this.isOverlayOpen = true;
   }
@@ -64,7 +70,7 @@ class Search {
           this.isSpinnerVisible = true;
         }
 
-        this.typingTimer = setTimeout(this.getResults.bind(this), 2000);
+        this.typingTimer = setTimeout(this.getResults.bind(this), 700);
       } else {
         this.resultsContainer.innerHTML = '';
         this.isSpinnerVisible = false;
@@ -75,21 +81,46 @@ class Search {
   }
 
   async getResults() {
-    // fetching logic
     const searchValue = this.searchInput.value;
-    const url = `${fields_js.root_url}/wp-json/wp/v2/posts?search=${searchValue}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    // output results
+    const posts = fetch(`${fields_js.root_url}/wp-json/wp/v2/posts?search=${searchValue}`).then((res) => res.json());
+    const pages = fetch(`${fields_js.root_url}/wp-json/wp/v2/pages?search=${searchValue}`).then((res) => res.json());
+    const response = await Promise.all([posts, pages]);
+    const data = [].concat(...response);
+    this.renderResults(data);
+  }
+
+  renderResults(data) {
+    this.isSpinnerVisible = false;
+
     this.resultsContainer.innerHTML = `
-      <h2>General Information</h2>
+    <h2>General Information</h2>
       ${data.length ? '<ul>' : '<p>No results found for your search.</p>'}
-      <ul>
         ${data.map((el) => `<li><a href="${el.link}">${el.title.rendered}</a></li>`).join('')}
       ${data.length ? '</ul>' : ''}
     `;
+  }
 
-    this.isSpinnerVisible = false;
+  addSearchHTML() {
+    const overlayMarkup = `
+    <div id="search-overlay" class="search-overlay">
+      <div class="top">
+        <div class="container">
+          <input type="text" class="search-term" placeholder="What are you looking for ?" id="search-term" autocomplete="off">
+          <button id="search-close-button" class="search-close-button">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="container">
+          <div id="search-overlay-results">
+          </div>
+        </div>
+      </div>
+    </div>
+    `;
+
+    document.querySelector('#page').insertAdjacentHTML('afterend', overlayMarkup);
   }
 }
 

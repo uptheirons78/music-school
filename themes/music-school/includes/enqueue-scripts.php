@@ -13,7 +13,10 @@ if (!defined('ABSPATH')) {
 function mb_scripts() {
   wp_enqueue_style('main-style', THEME_URI . '/build/index.css', array(), THEME_VERSION);
   wp_enqueue_script('main-js-file', THEME_URI . '/build/index.js', array(), THEME_VERSION, true);
-  wp_localize_script( 'main-js-file', 'fields_js', array('api' => MAPBOX_API));
+  wp_localize_script( 'main-js-file', 'fields_js', array(
+    'api' => MAPBOX_API,
+    'root_url' => get_site_url(),
+  ));
 
   // Leaflet CSS and JS: load only for single or archive pages of the post type 'campus'
   if (is_singular('campus') || is_post_type_archive('campus')) {

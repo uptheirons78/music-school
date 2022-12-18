@@ -185,21 +185,22 @@ class Search {
     this.previousValue = this.searchInput.value;
   }
   async getResults() {
+    // fetching logic
     const searchValue = this.searchInput.value;
-    const url = `http://musicschool.local/wp-json/wp/v2/posts?search=${searchValue}`;
+    const url = `${fields_js.root_url}/wp-json/wp/v2/posts?search=${searchValue}`;
     const response = await fetch(url);
     const data = await response.json();
+    // output results
     this.resultsContainer.innerHTML = `
       <h2>General Information</h2>
+      ${data.length ? '<ul>' : '<p>No results found for your search.</p>'}
       <ul>
         ${data.map(el => `<li><a href="${el.link}">${el.title.rendered}</a></li>`).join('')}
-      </ul>
+      ${data.length ? '</ul>' : ''}
     `;
-
-    // this.isSpinnerVisible = false;
+    this.isSpinnerVisible = false;
   }
 }
-
 /* harmony default export */ __webpack_exports__["default"] = (Search);
 
 /***/ }),

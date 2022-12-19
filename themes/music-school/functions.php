@@ -73,3 +73,8 @@ require THEME_DIR . '/includes/utility/page-banner.php';
  * Manipulate WP Rest API
  */
 require THEME_DIR . '/includes/utility/custom-rest.php';
+
+/**
+ * Custom Rest API Route
+ */
+require THEME_DIR . '/includes/routes/search-route.php';

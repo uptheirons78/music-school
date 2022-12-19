@@ -68,3 +68,8 @@ require THEME_DIR . '/includes/queries/adjust-campus-query.php';
  * Page Banner
  */
 require THEME_DIR . '/includes/utility/page-banner.php';
+
+/**
+ * Manipulate WP Rest API
+ */
+require THEME_DIR . '/includes/utility/custom-rest.php';

@@ -95,7 +95,15 @@ class Search {
     this.resultsContainer.innerHTML = `
     <h2>General Information</h2>
       ${data.length ? '<ul>' : '<p>No results found for your search.</p>'}
-        ${data.map((el) => `<li><a href="${el.link}">${el.title.rendered}</a></li>`).join('')}
+        ${data
+          .map((el) => {
+            if (el.type == 'post') {
+              return `<li><a href="${el.link}">${el.title.rendered}</a> by ${el.authorUrl}</li>`;
+            } else {
+              return `<li><a href="${el.link}">${el.title.rendered}</a></li>`;
+            }
+          })
+          .join('')}
       ${data.length ? '</ul>' : ''}
     `;
   }

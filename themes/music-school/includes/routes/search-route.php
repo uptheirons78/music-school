@@ -51,6 +51,7 @@ function ms_search_results($data) {
           'type'        => get_post_type(),
           'title'       => get_the_title(),
           'permalink'   => get_the_permalink(),
+          'image'       => get_the_post_thumbnail_url(0, 'professorPortrait') // 0 is for current post
         ));
       endif;
 
@@ -63,10 +64,21 @@ function ms_search_results($data) {
       endif;
 
       if (get_post_type() === 'event') :
+        $eventDate = new DateTime(get_field('event_date'));
+        $date = $eventDate->format('d M, Y');
+        $description = NULL;
+        if (has_excerpt()) :
+          $description = get_the_excerpt();
+        else :
+          $description = wp_trim_words( get_the_content(), 18, '');
+        endif;
+
         array_push($results['events'], array(
           'type'        => get_post_type(),
           'title'       => get_the_title(),
           'permalink'   => get_the_permalink(),
+          'date'        => $date,
+          'description' => $description
         ));
       endif;
 

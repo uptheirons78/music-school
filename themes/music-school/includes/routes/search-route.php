@@ -26,7 +26,7 @@ function ms_search_results($data) {
   ));
 
   $results = array(
-    'general_info'    => array(),
+    'generalInfo'    => array(),
     'professors'      => array(),
     'programs'        => array(),
     'events'          => array(),
@@ -38,10 +38,11 @@ function ms_search_results($data) {
       $mainQuery->the_post();
 
       if (get_post_type() === 'post' || get_post_type() === 'page') :
-        array_push($results['general_info'], array(
+        array_push($results['generalInfo'], array(
           'type'        => get_post_type(),
           'title'       => get_the_title(),
           'permalink'   => get_the_permalink(),
+          'author'      => get_the_author()
         ));
       endif;
 

@@ -116,6 +116,10 @@ class Navigation {
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
+/**
+ * This Search version is using a custom Rest API.
+ * Check inc/routes/search-route.php to see how to create one
+ */
 class Search {
   // Constructor
   constructor() {
@@ -191,26 +195,43 @@ class Search {
   }
   async getResults() {
     const searchValue = this.searchInput.value;
-    const posts = fetch(`${fields_js.root_url}/wp-json/wp/v2/posts?search=${searchValue}`).then(res => res.json());
-    const pages = fetch(`${fields_js.root_url}/wp-json/wp/v2/pages?search=${searchValue}`).then(res => res.json());
-    const response = await Promise.all([posts, pages]);
-    const data = [].concat(...response);
+    const results = await fetch(`${fields_js.root_url}/wp-json/music-school/v1/search?term=${searchValue}`);
+    const data = await results.json();
     this.renderResults(data);
+    console.log(data);
   }
   renderResults(data) {
-    this.isSpinnerVisible = false;
     this.resultsContainer.innerHTML = `
-    <h2>General Information</h2>
-      ${data.length ? '<ul>' : '<p>No results found for your search.</p>'}
-        ${data.map(el => {
-      if (el.type == 'post') {
-        return `<li><a href="${el.link}">${el.title.rendered}</a> by ${el.authorUrl}</li>`;
-      } else {
-        return `<li><a href="${el.link}">${el.title.rendered}</a></li>`;
-      }
-    }).join('')}
-      ${data.length ? '</ul>' : ''}
+    <div class="row">
+      <div class="col-one-third py-1">
+        <h2>General Information</h2>
+        ${data.generalInfo.length ? '<ul>' : '<p>No results for this search.</p>'}
+        ${data.generalInfo.map(item => item.type === 'post' ? `<li><a href="${item.permalink}">${item.title}</a> by ${item.author}</li>` : `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+        ${data.generalInfo.length ? '</ul>' : ''}
+      </div>
+      <div class="col-one-third py-1">
+        <h2>Programs</h2>
+        ${this.renderList(data.programs)}
+        <h2>Professors</h2>
+        ${this.renderList(data.professors)}
+      </div>
+      <div class="col-one-third py-1">
+        <h2>Campuses</h2>
+        ${this.renderList(data.campuses)}
+        <h2>Events</h2>
+        ${this.renderList(data.events)}
+      </div>
+    </div>
     `;
+    this.isSpinnerVisible = false;
+  }
+  renderList(data) {
+    const output = `
+    ${data.length ? '<ul>' : '<p>No results for this search.</p>'}
+    ${data.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+    ${data.length ? '</ul>' : ''}
+    `;
+    return output;
   }
   addSearchHTML() {
     const overlayMarkup = `

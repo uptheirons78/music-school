@@ -211,27 +211,27 @@ class Search {
       </div>
       <div class="col-one-third py-1">
         <h2>Programs</h2>
-        ${this.renderList(data.programs)}
+        ${data.programs.length ? '<ul>' : '<p>No results for this search.</p>'}
+        ${data.programs.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+        ${data.programs.length ? '</ul>' : ''}
         <h2>Professors</h2>
-        ${this.renderList(data.professors)}
+        ${data.professors.length ? '<ul>' : '<p>No results for this search.</p>'}
+        ${data.professors.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+        ${data.professors.length ? '</ul>' : ''}
       </div>
       <div class="col-one-third py-1">
         <h2>Campuses</h2>
-        ${this.renderList(data.campuses)}
+        ${data.campuses.length ? '<ul>' : '<p>No results for this search.</p>'}
+        ${data.campuses.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+        ${data.campuses.length ? '</ul>' : ''}
         <h2>Events</h2>
-        ${this.renderList(data.events)}
+        ${data.events.length ? '<ul>' : '<p>No results for this search.</p>'}
+        ${data.events.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
+        ${data.events.length ? '</ul>' : ''}
       </div>
     </div>
     `;
     this.isSpinnerVisible = false;
-  }
-  renderList(data) {
-    const output = `
-    ${data.length ? '<ul>' : '<p>No results for this search.</p>'}
-    ${data.map(item => `<li><a href="${item.permalink}">${item.title}</a></li>`).join('')}
-    ${data.length ? '</ul>' : ''}
-    `;
-    return output;
   }
   addSearchHTML() {
     const overlayMarkup = `

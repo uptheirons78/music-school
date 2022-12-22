@@ -62,6 +62,7 @@ function ms_search_results($data) {
         if (!empty($relatedCampuses)) {
           foreach ($relatedCampuses as $campus) {
             array_push($results['campuses'], array(
+              'type'        => get_post_type($campus),
               'title'       => get_the_title($campus),
               'permalink'   => get_the_permalink($campus)
             ));
@@ -163,6 +164,7 @@ function ms_search_results($data) {
     // Clean results array from duplicates
     $results['professors'] = array_values(array_unique($results['professors'], SORT_REGULAR));
     $results['events'] = array_values(array_unique($results['events'], SORT_REGULAR));
+    $results['campuses'] = array_values(array_unique($results['campuses'], SORT_REGULAR));
 
   }
 

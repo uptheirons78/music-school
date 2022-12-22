@@ -26,7 +26,7 @@ function ms_search_results($data) {
   ));
 
   $results = array(
-    'generalInfo'    => array(),
+    'generalInfo'     => array(),
     'professors'      => array(),
     'programs'        => array(),
     'events'          => array(),
@@ -60,6 +60,7 @@ function ms_search_results($data) {
           'type'        => get_post_type(),
           'title'       => get_the_title(),
           'permalink'   => get_the_permalink(),
+          'id'          => get_the_ID()
         ));
       endif;
 
@@ -67,6 +68,7 @@ function ms_search_results($data) {
         $eventDate = new DateTime(get_field('event_date'));
         $date = $eventDate->format('d M, Y');
         $description = NULL;
+
         if (has_excerpt()) :
           $description = get_the_excerpt();
         else :
@@ -92,6 +94,45 @@ function ms_search_results($data) {
 
     endwhile;
   endif;
+
+  if (!empty($results['programs'])) {
+
+    $programsMetaQuery = array('relation' => 'OR');
+
+    foreach ($results['programs'] as $item) {
+      array_push($programsMetaQuery, array(
+        'key'       => 'related_program',
+        'compare'   => 'LIKE',
+        'value'     => '"' . $item['id'] . '"',
+      ));
+    }
+
+    $programRelationshipQuery = new WP_Query(array(
+      'post_type' => 'professor',
+      'meta_query' => $programsMetaQuery
+    ));
+
+    if ($programRelationshipQuery->have_posts()) :
+      while($programRelationshipQuery->have_posts()) :
+        $programRelationshipQuery->the_post();
+        if (get_post_type() === 'professor') :
+          array_push($results['professors'], array(
+            'type'        => get_post_type(),
+            'title'       => get_the_title(),
+            'permalink'   => get_the_permalink(),
+            'image'       => get_the_post_thumbnail_url(0, 'professorPortrait') // 0 is for current post
+          ));
+        endif;
+      endwhile;
+    endif;
+
+    // Clean the results array from duplicates
+    $results['professors'] = array_values(array_unique($results['professors'], SORT_REGULAR));
+
+  }
+
+
+
 
   return $results;
 }

@@ -13,7 +13,8 @@ if (!defined('ABSPATH')) {
 function ms_search_route() {
   $args = array(
     'methods' => WP_REST_Server::READABLE, //it's a Get method
-    'callback' => 'ms_search_results'
+    'callback' => 'ms_search_results',
+    'permission_callback' => '__return_true'
   );
   register_rest_route('music-school/v1', 'search', $args);
 }
@@ -56,6 +57,17 @@ function ms_search_results($data) {
       endif;
 
       if (get_post_type() === 'program') :
+        $relatedCampuses = get_field('related_campus');
+
+        if (!empty($relatedCampuses)) {
+          foreach ($relatedCampuses as $campus) {
+            array_push($results['campuses'], array(
+              'title'       => get_the_title($campus),
+              'permalink'   => get_the_permalink($campus)
+            ));
+          }
+        }
+
         array_push($results['programs'], array(
           'type'        => get_post_type(),
           'title'       => get_the_title(),
@@ -108,13 +120,14 @@ function ms_search_results($data) {
     }
 
     $programRelationshipQuery = new WP_Query(array(
-      'post_type' => 'professor',
+      'post_type' => array('professor', 'event'),
       'meta_query' => $programsMetaQuery
     ));
 
     if ($programRelationshipQuery->have_posts()) :
       while($programRelationshipQuery->have_posts()) :
         $programRelationshipQuery->the_post();
+
         if (get_post_type() === 'professor') :
           array_push($results['professors'], array(
             'type'        => get_post_type(),
@@ -123,11 +136,33 @@ function ms_search_results($data) {
             'image'       => get_the_post_thumbnail_url(0, 'professorPortrait') // 0 is for current post
           ));
         endif;
+
+        if (get_post_type() === 'event') :
+          $eventDate = new DateTime(get_field('event_date'));
+          $date = $eventDate->format('d M, Y');
+          $description = NULL;
+
+          if (has_excerpt()) :
+            $description = get_the_excerpt();
+          else :
+            $description = wp_trim_words(get_the_content(), 18, '');
+          endif;
+
+          array_push($results['events'], array(
+            'type'        => get_post_type(),
+            'title'       => get_the_title(),
+            'permalink'   => get_the_permalink(),
+            'date'        => $date,
+            'description' => $description
+          ));
+        endif;
+
       endwhile;
     endif;
 
-    // Clean the results array from duplicates
+    // Clean results array from duplicates
     $results['professors'] = array_values(array_unique($results['professors'], SORT_REGULAR));
+    $results['events'] = array_values(array_unique($results['events'], SORT_REGULAR));
 
   }
 

@@ -5,6 +5,8 @@
  * Version: 1.0
  * Author: Mauro Bono
  * Author URI: https://maurobono.com
+ * Text Domain: wcpdomain
+ * Domain Path: /languages
  */
 class MBWordCounter
 {
@@ -12,6 +14,11 @@ class MBWordCounter
     add_action('admin_menu', array($this, 'adminPage'));
     add_action('admin_init', array($this, 'settings'));
     add_filter('the_content', array($this, 'isWrap'));
+    add_action('init', array($this, 'languages'));
+  }
+
+  function languages() {
+    load_plugin_textdomain( 'wcpdomain', false, dirname( plugin_basename(__FILE__)) . '/languages' );
   }
 
   function isWrap($content) {
@@ -39,7 +46,7 @@ class MBWordCounter
     }
 
     if (get_option('wcp_wordcount', '1')) {
-      $html .= 'This post has ' . $wordCount . ' words.<br>';
+      $html .= esc_html__('This post has', 'wcpdomain') . ' ' . $wordCount . ' ' . esc_html__('words', 'wcpdomain') . '.<br>';
     }
 
     if (get_option('wcp_charcount', '1')) {
@@ -60,7 +67,7 @@ class MBWordCounter
   }
 
   function adminPage() {
-    add_options_page('Word Counter', 'Word Counter', 'manage_options', 'wordcounter', array($this, 'settingsHTML'));
+    add_options_page('Word Counter', __('Word Counter', 'wcpdomain'), 'manage_options', 'wordcounter', array($this, 'settingsHTML'));
   }
 
   function settings() {

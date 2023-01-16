@@ -9,8 +9,19 @@
 if ( ! defined('ABSPATH') ) exit; //Exit if accessed directly
 
 class MBWordFilterPlugin {
+
   function __construct() {
     add_action('admin_menu', array($this, 'ourMenu'));
+    add_action('admin_init', array($this, 'ourSettings'));
+    if (get_option('words_to_filter')) {
+      add_filter('the_content', array($this, 'filterLogic'));
+    }
+  }
+
+  function filterLogic($content) {
+    $bad_words = explode(',', get_option('words_to_filter'));
+    $bad_words_trimmed = array_map('trim', $bad_words);
+    return str_ireplace($bad_words_trimmed, esc_html(get_option('replacementText')), $content);
   }
 
   function ourMenu() {
@@ -89,8 +100,29 @@ class MBWordFilterPlugin {
     </div>
   <?php }
 
+  function ourSettings() {
+    add_settings_section( 'replacement-text-section', null, null, 'word-filter-options' );
+    register_setting( 'replacementFields', 'replacementText' );
+    add_settings_field( 'replacement-text', 'Filtered Text', array($this, 'replacementFieldHTML'), 'word-filter-options', 'replacement-text-section' );
+  }
+
+  function replacementFieldHTML() {?>
+    <input type="text" name="replacementText" value="<?php echo esc_attr(get_option('replacementText', '*****')); ?>">
+    <p class="description">Leave blank to remove filtered words.</p>
+  <?php }
+
   function optionsSubPage() { ?>
-  Hello Words
+  <div class="wrap">
+    <h1>Word Filter Options</h1>
+    <form action="options.php" method="POST">
+      <?php
+        settings_errors();
+        settings_fields( 'replacementFields' );
+        do_settings_fields( 'word-filter-options', 'replacement-text-section' );
+        submit_button();
+      ?>
+    </form>
+  </div>
   <?php }
 
 
